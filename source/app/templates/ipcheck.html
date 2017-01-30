@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+	<div class="page-header">
+		<h1>This is my IP Info</h1>
+	</div>
+	<div class="row">
+		<p>
+			{% for ipinfo in ipinfos %}
+				{{ ipinfo }}<br />
+			{% endfor %}
+		</p>
+		<p>
+			Your ip is {{ yourip }}
+		</p>
+	</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: westernwall-web
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        name: westernwall-web
+    spec:
+      containers:
+      - image: dockerregistry.nithralas.local:5000/westernwall:latest
+        name: westernwall-web
+        ports:
+        - name: http-server
+          containerPort: 5000
+        env:
+        - name: REDIS_HOST
+          value: 'westernwall-redis-svc'

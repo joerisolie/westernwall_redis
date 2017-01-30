@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: westernwall-redis
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: westernwall-redis
+    spec:
+      containers:
+      - image: redis
+        name: westernwall-redis
+        ports:
+        - name: redis
+          containerPort: 6379
