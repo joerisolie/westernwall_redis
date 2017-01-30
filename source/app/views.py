@@ -3,8 +3,7 @@ import random
 import os
 
 from app import app,forms
-from flask import render_template, flash, redirect, session, url_for, request, g, jsonify
-from flask.ext.login import login_user, logout_user, current_user, login_required
+from flask import render_template, flash, request
 from .forms import MessageForm
 
 class Message(object):
@@ -30,7 +29,6 @@ def index():
 		m = Message(form.name.data,form.message.data,3,0)
 		pickledObj = pickle.dumps(m)
 		loc = random.randint(0,35)
-		#app.redis.lpush('messages', pickledObj)	
 		app.redis.lset('messages', loc, pickledObj)
 		app.redis.ltrim('messages', 0, 35)
 	
